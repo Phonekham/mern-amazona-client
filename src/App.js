@@ -1,13 +1,16 @@
 import React from "react";
 import { BrowserRouter, Link, Route } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from "./screens/ProductScreen";
 import CartScreen from "./screens/CartScreen";
 import SigninScreen from "./screens/SigninScreen";
+import RegisterScreen from "./screens/RegisterScreen";
+import { signout } from "./actions/userActions";
 
 function App() {
+  const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const userSignin = useSelector((state) => state.userSignin);
   const { cartItems } = cart;
@@ -54,8 +57,9 @@ function App() {
         <main>
           <Route path="/cart/:id?" component={CartScreen}></Route>
           <Route path="/product/:id" component={ProductScreen}></Route>
-          <Route path="/" component={HomeScreen} exact></Route>
           <Route path="/signin" component={SigninScreen}></Route>
+          <Route path="/register" component={RegisterScreen}></Route>
+          <Route path="/" component={HomeScreen} exact></Route>
         </main>
         <footer className="row center">All right reserved</footer>
       </div>
